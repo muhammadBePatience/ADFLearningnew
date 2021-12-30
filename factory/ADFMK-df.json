@@ -1,0 +1,9 @@
+{
+	"name": "ADFMK-df",
+	"location": "canadaeast",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e4c333f2-48cb-41cd-844a-8509b6f5e581",
+		"tenantId": "62505e63-158a-44a7-95d9-1d1fa9a35c23"
+	}
+}
