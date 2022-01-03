@@ -1,0 +1,13 @@
+{
+	"name": "LinkToAZDF",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "Link To Selfhosted ",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/1477f55d-cbaf-40dd-b824-c8e1f3e173ac/resourcegroups/MyFirstADLakeLearning-rg/providers/Microsoft.DataFactory/factories/ADFMKSelfhostedDemo/integrationruntimes/SelfhostedAzureIntegrationRunTimeDemo",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}

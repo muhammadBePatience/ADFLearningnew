@@ -1,0 +1,22 @@
+{
+	"name": "BinaryDataSet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkservicefileserviceMkLaptop",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Chapter08Selfhosted"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "04-20.csv",
+				"folderPath": "CloudSelfHostedDataDemo"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

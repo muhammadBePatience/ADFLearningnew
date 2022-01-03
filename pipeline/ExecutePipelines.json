@@ -1,0 +1,31 @@
+{
+	"name": "ExecutePipelines",
+	"properties": {
+		"description": "This pipeline will use to execute other Pipeline",
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ImportSTFormatFolder",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"WildcardFolderPath": "azure-data-factory-by-example-main.zip/azure-data-factory-by-example-main/SampleData/SweetTreats",
+						"WildcardFileName": "*.csv"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Chapter5"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-01-01T18:21:53Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
