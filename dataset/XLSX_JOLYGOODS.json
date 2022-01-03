@@ -1,0 +1,23 @@
+{
+	"name": "XLSX_JOLYGOODS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "SALES",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Sales Apr-Sep 2020.xlsx",
+				"folderPath": "azure-data-factory-by-example-main.zip/azure-data-factory-by-example-main/SampleData/JollyGood",
+				"container": "sampledata"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

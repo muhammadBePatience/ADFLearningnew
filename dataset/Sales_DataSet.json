@@ -1,12 +1,12 @@
 {
-	"name": "ASQL_dboSalesLoad",
+	"name": "Sales_DataSet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adfbyexampleazsql",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "chapter3"
+			"name": "Chapter07"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
@@ -29,27 +29,15 @@
 				"type": "nvarchar"
 			},
 			{
-				"name": "ManufacturerProductCode",
-				"type": "nvarchar"
-			},
-			{
 				"name": "SalesValueUSD",
 				"type": "decimal",
-				"precision": 18,
+				"precision": 19,
 				"scale": 2
 			},
 			{
 				"name": "UnitsSold",
 				"type": "int",
 				"precision": 10
-			},
-			{
-				"name": "PipelineRunId",
-				"type": "nvarchar"
-			},
-			{
-				"name": "SourceFileName",
-				"type": "nvarchar"
 			},
 			{
 				"name": "RunSeqNo",
@@ -59,7 +47,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Sales_LOAD"
+			"table": "Sales"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

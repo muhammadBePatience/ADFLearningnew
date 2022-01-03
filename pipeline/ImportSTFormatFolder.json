@@ -1,5 +1,5 @@
 {
-	"name": "ImportSweetTreatsSales_Audit",
+	"name": "ImportSTFormatFolder",
 	"properties": {
 		"activities": [
 			{
@@ -27,8 +27,14 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "azure-data-factory-by-example-main.zip/azure-data-factory-by-example-main/SampleData/SweetTreats",
-							"wildcardFileName": "*",
+							"wildcardFolderPath": {
+								"value": "@pipeline().parameters.WildcardFolderPath",
+								"type": "Expression"
+							},
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.WildcardFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -261,6 +267,15 @@
 				}
 			}
 		],
+		"parameters": {
+			"WildcardFolderPath": {
+				"type": "string"
+			},
+			"WildcardFileName": {
+				"type": "string",
+				"defaultValue": "*.csv"
+			}
+		},
 		"variables": {
 			"RunSeqNo": {
 				"type": "String",
@@ -268,7 +283,7 @@
 			}
 		},
 		"folder": {
-			"name": "Chapter4"
+			"name": "Chapter5"
 		},
 		"annotations": [],
 		"lastPublishTime": "2022-01-02T23:08:20Z"

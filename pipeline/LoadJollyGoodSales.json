@@ -1,0 +1,131 @@
+{
+	"name": "LoadJollyGoodSales",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[LogPipelineStart]",
+						"storedProcedureParameters": {
+							"Comments": {
+								"type": "String",
+								"value": "'DataFlow Activity Start'"
+							},
+							"PipelineRunId": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							"RunStartDateTime": {
+								"type": "DateTime",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ASQL_dboSalesLoad",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "DF1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "TransformJollyGoodSales",
+						"type": "DataFlowReference",
+						"parameters": {
+							"RunSeqNo": {
+								"value": "@int(activity('Lookup1').output.firstRow.RunSeqNo)",
+								"type": "Expression"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Stored procedure1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "DF1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[PersistLoadedSales]",
+					"storedProcedureParameters": {
+						"RunSeqNo": {
+							"value": {
+								"value": "@activity('Lookup1').output.firstRow.RunSeqNo",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adfbyexampleazsql",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "Chapter07"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-01-03T01:02:48Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
