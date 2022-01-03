@@ -5,6 +5,12 @@
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"escapecharacter": {
+				"type": "string",
+				"defaultValue": "\\"
+			}
+		},
 		"folder": {
 			"name": "chapter3"
 		},
@@ -18,7 +24,10 @@
 				"container": "sampledata"
 			},
 			"columnDelimiter": ",",
-			"escapeChar": "\\",
+			"escapeChar": {
+				"value": "@dataset().escapecharacter",
+				"type": "Expression"
+			},
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},

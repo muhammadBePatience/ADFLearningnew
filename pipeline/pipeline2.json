@@ -1,9 +1,9 @@
 {
-	"name": "ImportCandyShackSales",
+	"name": "pipeline2",
 	"properties": {
 		"activities": [
 			{
-				"name": "Import Sales Data",
+				"name": "Copy data1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -20,8 +20,6 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "azure-data-factory-by-example-main.zip/azure-data-factory-by-example-main/SampleData/CandyShack",
-							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -29,9 +27,7 @@
 						}
 					},
 					"sink": {
-						"type": "AzureSqlSink",
-						"preCopyScript": "TRUNCATE TABLE dbo.Sales_LOAD",
-						"disableMetricsCollection": false
+						"type": "AzureSqlSink"
 					},
 					"enableStaging": false,
 					"translator": {
@@ -39,64 +35,57 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Retailer",
 									"type": "String",
-									"physicalType": "String"
+									"ordinal": 1
 								},
 								"sink": {
-									"name": "Retailer",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "SalesMonth",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "SalesMonth",
+									"name": "Timestamp",
 									"type": "DateTime",
-									"physicalType": "date"
+									"physicalType": "datetime2"
 								}
 							},
 							{
 								"source": {
-									"name": "Product",
 									"type": "String",
-									"physicalType": "String"
+									"ordinal": 2
 								},
 								"sink": {
-									"name": "Product",
+									"name": "Level",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "SalesValue",
 									"type": "String",
-									"physicalType": "String"
+									"ordinal": 3
 								},
 								"sink": {
-									"name": "SalesValueUSD",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 18
+									"name": "OperationName",
+									"type": "String",
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "UnitsSold",
 									"type": "String",
-									"physicalType": "String"
+									"ordinal": 4
 								},
 								"sink": {
-									"name": "UnitsSold",
-									"type": "Int32",
-									"physicalType": "int"
+									"name": "OperationItem",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 5
+								},
+								"sink": {
+									"name": "Message",
+									"type": "String",
+									"physicalType": "nvarchar"
 								}
 							}
 						],
@@ -109,23 +98,27 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ABS_CSV_CandyShack",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "ASQL_dboSalesLoad",
-						"type": "DatasetReference"
+						"referenceName": "AZSQLDatabaseLoggingError",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "LoadingError",
+							"SchemaName": "dbo"
+						}
 					}
 				]
 			}
 		],
 		"folder": {
-			"name": "Chapter3"
+			"name": "Chapter6"
 		},
 		"annotations": [],
-		"lastPublishTime": "2022-01-02T23:08:20Z"
+		"lastPublishTime": "2022-01-02T15:49:26Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
