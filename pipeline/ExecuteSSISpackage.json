@@ -1,0 +1,35 @@
+{
+	"name": "ExecuteSSISpackage",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute SSIS Package1",
+				"type": "ExecuteSSISPackage",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"packageLocation": {
+						"packagePath": "MyTest/Azure-SSIS-IntegrationRuntimeTest/TestPackage.dtsx",
+						"type": "SSISDB"
+					},
+					"environmentPath": null,
+					"connectVia": {
+						"referenceName": "azureSSISImk",
+						"type": "IntegrationRuntimeReference"
+					},
+					"loggingLevel": "Basic"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-01-03T21:43:53Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
