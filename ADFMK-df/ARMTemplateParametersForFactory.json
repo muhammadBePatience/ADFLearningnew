@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ADFMK-df"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"LS_ADLS2_connectionString": {
+			"value": ""
+		},
+		"LS_ASQL_connectionString": {
+			"value": ""
+		},
+		"LS_SQLSERVER_connectionString": {
+			"value": ""
+		},
+		"LinkservicefileserviceMkLaptop_password": {
+			"value": ""
+		},
+		"adfbyexampleazsql_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage2_properties_typeProperties_connectionString_secretName": {
+			"value": "storagekeyconnectionstringnew"
+		},
+		"AzureBlobStorage3_properties_typeProperties_connectionString_secretName": {
+			"value": "@linkedService().ConnectionSecret"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://azbyexample-kv.vault.azure.net/"
+		},
+		"LinkservicefileserviceMkLaptop_properties_typeProperties_host": {
+			"value": "c:\\"
+		},
+		"LinkservicefileserviceMkLaptop_properties_typeProperties_userId": {
+			"value": "mkhanlocalsd"
+		},
+		"adfbyexamplekv_properties_typeProperties_baseUrl": {
+			"value": "https://azadfbyexamplemk-kv.vault.azure.net/"
+		},
+		"LinkToAZDF_properties_typeProperties_linkedInfo_resourceId": {
+			"value": "/subscriptions/1477f55d-cbaf-40dd-b824-c8e1f3e173ac/resourcegroups/MyFirstADLakeLearning-rg/providers/Microsoft.DataFactory/factories/ADFMKSelfhostedDemo/integrationruntimes/SelfhostedAzureIntegrationRunTimeDemo"
+		},
+		"azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"value": "azadfsqlservermk.database.windows.net"
+		},
+		"azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"value": "azadfbyexample-admin"
+		},
+		"azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"value": ""
+		}
+	}
+}

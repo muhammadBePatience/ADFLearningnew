@@ -1,0 +1,213 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ADFMK-df"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"LS_ADLS2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_ADLS2'"
+		},
+		"LS_ASQL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_ASQL'"
+		},
+		"LS_SQLSERVER_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_SQLSERVER'"
+		},
+		"LinkservicefileserviceMkLaptop_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LinkservicefileserviceMkLaptop'"
+		},
+		"adfbyexampleazsql_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'adfbyexampleazsql'"
+		},
+		"AzureBlobStorage2_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "storagekeyconnectionstringnew"
+		},
+		"AzureBlobStorage3_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "@linkedService().ConnectionSecret"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://azbyexample-kv.vault.azure.net/"
+		},
+		"LinkservicefileserviceMkLaptop_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "c:\\"
+		},
+		"LinkservicefileserviceMkLaptop_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "mkhanlocalsd"
+		},
+		"adfbyexamplekv_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://azadfbyexamplemk-kv.vault.azure.net/"
+		},
+		"LinkToAZDF_properties_typeProperties_linkedInfo_resourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/1477f55d-cbaf-40dd-b824-c8e1f3e173ac/resourcegroups/MyFirstADLakeLearning-rg/providers/Microsoft.DataFactory/factories/ADFMKSelfhostedDemo/integrationruntimes/SelfhostedAzureIntegrationRunTimeDemo"
+		},
+		"azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"type": "string",
+			"defaultValue": "azadfsqlservermk.database.windows.net"
+		},
+		"azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"type": "string",
+			"defaultValue": "azadfbyexample-admin"
+		},
+		"azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"type": "secureString"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ADFMK-df_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"LS_ADLS2_connectionString": {
+						"value": "[parameters('LS_ADLS2_connectionString')]"
+					},
+					"LS_ASQL_connectionString": {
+						"value": "[parameters('LS_ASQL_connectionString')]"
+					},
+					"LS_SQLSERVER_connectionString": {
+						"value": "[parameters('LS_SQLSERVER_connectionString')]"
+					},
+					"adfbyexampleazsql_connectionString": {
+						"value": "[parameters('adfbyexampleazsql_connectionString')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"adfbyexamplekv_properties_typeProperties_baseUrl": {
+						"value": "[parameters('adfbyexamplekv_properties_typeProperties_baseUrl')]"
+					},
+					"LinkToAZDF_properties_typeProperties_linkedInfo_resourceId": {
+						"value": "[parameters('LinkToAZDF_properties_typeProperties_linkedInfo_resourceId')]"
+					},
+					"azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+						"value": "[parameters('azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint')]"
+					},
+					"azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+						"value": "[parameters('azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName')]"
+					},
+					"azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+						"value": "[parameters('azureSSISImk_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "ADFMK-df_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LinkservicefileserviceMkLaptop_password": {
+						"value": "[parameters('LinkservicefileserviceMkLaptop_password')]"
+					},
+					"AzureBlobStorage2_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('AzureBlobStorage2_properties_typeProperties_connectionString_secretName')]"
+					},
+					"AzureBlobStorage3_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('AzureBlobStorage3_properties_typeProperties_connectionString_secretName')]"
+					},
+					"LinkservicefileserviceMkLaptop_properties_typeProperties_host": {
+						"value": "[parameters('LinkservicefileserviceMkLaptop_properties_typeProperties_host')]"
+					},
+					"LinkservicefileserviceMkLaptop_properties_typeProperties_userId": {
+						"value": "[parameters('LinkservicefileserviceMkLaptop_properties_typeProperties_userId')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ADFMK-df_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "ADFMK-df_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ADFMK-df_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "ADFMK-df_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ADFMK-df_ArmTemplate_2')]"
+			]
+		}
+	]
+}
