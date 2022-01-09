@@ -1,0 +1,38 @@
+{
+	"name": "DS_ADLS2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"table_name": {
+				"type": "string"
+			},
+			"table_catalog": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "MYNewbook"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@{item().Table_Name}/@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(utcnow(),'dd')}/@{item().Table_Name}@{formatDateTime(utcnow(),'HH')}",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('rl-sql-001/',dataset().table_catalog)",
+					"type": "Expression"
+				},
+				"container": "lake"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
